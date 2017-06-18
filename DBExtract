@@ -1,0 +1,46 @@
+import requests
+import csv
+import nltk
+
+mycsv = open("dbcsv3.csv", 'wt')
+mywriter = csv.writer(mycsv)
+for i in range(0, 10):
+
+    if (i==2416):
+        word = "fiancee"
+        fulllink = "https://www.handspeak.com/word/f/fiancee.mp4"
+        finalline = str(i) + ',' + word + ',' + fulllink + '\n'
+        mycsv.write(finalline)
+        break
+    r = requests.get('https://www.handspeak.com/word/search/index.php?id='+str(i))
+    data = r.text
+    stringStart = '<h2><span itemprop="name">ASL sign for: '
+    lenString1 = len(stringStart)
+    stringEnd = '</span></h2>'
+    lenString2 = len(stringEnd)
+    foundyou = data.find(stringStart)
+    stringindex = data.find(stringEnd)
+
+    mp4start = '<video id="mySign" class="v-asl" autoplay'
+    mp4end = '" type="video/mp4"'
+
+    l1 = len(mp4start)
+    l2 = len('src="')
+    l3 = len(mp4end)
+
+    foundstart = data.find(mp4start)
+    foundend = data.find(mp4end)
+
+
+    word = data[foundyou+lenString1:stringindex]
+    poslist = nltk.pos_tag(word)
+    post = poslist[1]
+
+    weblink = data[foundstart+l1+l2+l2:foundend]
+    addtolink = "https://www.handspeak.com"
+    fulllink = addtolink+weblink
+
+    finalline =str(i)+','+word+','+fulllink+'\n'
+    mycsv.write(finalline)
+
+mycsv.close()
