@@ -18,6 +18,7 @@ const crypto = require('crypto');
 const express = require('express');
 const fetch = require('node-fetch');
 const request = require('request');
+const database = require('./convertcsv');
 require("dotenv").config();
 
 let Wit = null;
@@ -203,8 +204,10 @@ app.post('/webhook', (req, res) => {
               .then((data) => {
                 console.log(data)
                 console.log(data.entities)
+
                 let answer;
                 if (Object.keys(data.entities).length && data.entities.intent[0]) {
+
                   if (data.entities.intent[0].confidence > 0.70) {
                     answer = `I think you are lookin for ${data.entities.intent[0].value}.`
                   } else if (data.entities.intent[0].confidence > 0.40) {
@@ -212,6 +215,20 @@ app.post('/webhook', (req, res) => {
                   } else {
                     answer = `Im not sure, but I think you are looking for ${data.entities.intent[0].value}.`
                   }
+
+                  let videoID;
+                  for (let i = 1; i <= database.length; i++) {
+                    if (database[i].FIELD2 === data.entities.intent[0].value) {
+                      videoID = database[i].FIELD1
+                      break;
+                    }
+                  }
+                  if (videoID) {
+                    answer += `\nHere is how to say it in ASL\nhttps://www.handspeak.com/word/search/index.php?id=${videoID}`
+                  } else {
+                    answer += `\nBut sadly we don't have a video for it`
+                  }
+
                 } else {
                   answer = 'I\'m sorry I don\'t know what you mean by this.\nTry something like \'How do you say #YourWordHere\''
                 }

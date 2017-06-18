@@ -19,6 +19,8 @@
   "author": "The Wit Team <help@wit.ai>",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "csv-parse": "^1.2.0",
+    "csvtojson": "^1.1.6",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "isomorphic-fetch": "^2.2.1",
