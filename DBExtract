@@ -1,17 +1,17 @@
 import requests
 import csv
-import nltk
+#import nltk
 
-mycsv = open("dbcsv3.csv", 'wt')
+mycsv = open("dbcsv2416-3000.csv", 'wt')
 mywriter = csv.writer(mycsv)
-for i in range(0, 10):
+for i in range(2416,2418):
 
     if (i==2416):
         word = "fiancee"
         fulllink = "https://www.handspeak.com/word/f/fiancee.mp4"
         finalline = str(i) + ',' + word + ',' + fulllink + '\n'
         mycsv.write(finalline)
-        break
+        continue
     r = requests.get('https://www.handspeak.com/word/search/index.php?id='+str(i))
     data = r.text
     stringStart = '<h2><span itemprop="name">ASL sign for: '
@@ -33,8 +33,8 @@ for i in range(0, 10):
 
 
     word = data[foundyou+lenString1:stringindex]
-    poslist = nltk.pos_tag(word)
-    post = poslist[1]
+    #poslist = nltk.pos_tag(word)
+    #post = poslist[1]
 
     weblink = data[foundstart+l1+l2+l2:foundend]
     addtolink = "https://www.handspeak.com"
@@ -42,5 +42,6 @@ for i in range(0, 10):
 
     finalline =str(i)+','+word+','+fulllink+'\n'
     mycsv.write(finalline)
+    print finalline
 
 mycsv.close()
