@@ -209,20 +209,26 @@ app.post('/webhook', (req, res) => {
                 if (Object.keys(data.entities).length && data.entities.intent[0]) {
 
                   if (data.entities.intent[0].confidence > 0.70) {
-                    answer = `I think you are lookin for ${data.entities.intent[0].value}.`
+                    answer = `I think you are lookin for ${data.entities.intent[0].value}`
                   } else if (data.entities.intent[0].confidence > 0.40) {
-                    answer = `I'm pretty sure you're looking for ${data.entities.intent[0].value}.`
+                    answer = `I'm pretty sure you're looking for ${data.entities.intent[0].value}`
                   } else {
-                    answer = `Im not sure, but I think you are looking for ${data.entities.intent[0].value}.`
+                    answer = `Im not sure, but I think you are looking for ${data.entities.intent[0].value}`
                   }
 
                   let videoID;
+                  let noun;
                   for (let i = 1; i <= database.length; i++) {
                     if (database[i].FIELD2 === data.entities.intent[0].value) {
                       videoID = database[i].FIELD1
+                      noun = database[i].FIELD5
                       break;
                     }
                   }
+                  if (noun) {
+                    answer += ` (${noun}).`
+                  }
+
                   if (videoID) {
                     answer += `\nHere is how to say it in ASL\nhttps://www.handspeak.com/word/search/index.php?id=${videoID}`
                   } else {
