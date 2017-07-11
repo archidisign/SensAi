@@ -5,7 +5,7 @@ This is the code for a Facebook messenger bot that allows the user to find the U
 Work is done using: Node.js, Python, CSV, Wit.AI, Messenger Facebook Developer Tools, Webhook and ngrok.
 
 
-1) Creating Our Own Dataset</h3>
+<h3>1) Creating Our Own Dataset</h3>
 As there weren't any clean existing dataset of ASL translated videos of common English word, the handspeak website did have a fair amount of 7553 videos for common words. We thought it would be a great start to find links to these videos and being able to map them to the word associated. We used Python to scrape the website and create a dataset. Although the links for the video's .mp4 location couldn't be easily shared because of permission issues, the dataset still allowed us to map the numbers to the correct word and its webpage. The Python program for this is called <a href="https://github.com/archidisign/SensAi/blob/master/DBExtract.py">DBExtract.py</a>. The program scrapes the website's structure and saves all important information in a csv file.
 <ul>
  	<li>Link: Handspeak <a href="https://medium.com/@Oskarr3/developing-messenger-bot-with-ngrok-5d23208ed7c8">website</a></li>
@@ -29,4 +29,5 @@ The next step was to go on Facebook to create a new facebook page. We found this
 You are now connected and can see immediate result. Here, I tested the chatbot and was pleasantly surprised to see that everything is working as expected. If you look at the command-line, you will also be able to track the confidence percentage for each expression being entered.
 
 <a href="https://catharticstudent.files.wordpress.com/2017/07/fb_dev3.jpg"><img class="alignnone size-full wp-image-746" src="https://catharticstudent.files.wordpress.com/2017/07/fb_dev3.jpg" alt="" width="802" height="244" /></a> <a href="https://catharticstudent.files.wordpress.com/2017/07/fb_dev.jpg"><img class="alignnone size-full wp-image-747" src="https://catharticstudent.files.wordpress.com/2017/07/fb_dev.jpg" alt="" width="820" height="206" /></a> <a href="https://catharticstudent.files.wordpress.com/2017/07/fb_dev2.jpg"><img class="alignnone size-full wp-image-748" src="https://catharticstudent.files.wordpress.com/2017/07/fb_dev2.jpg" alt="" width="820" height="107" /></a> <a href="https://catharticstudent.files.wordpress.com/2017/07/ngork.jpg"><img class="alignnone size-full wp-image-749" src="https://catharticstudent.files.wordpress.com/2017/07/ngork.jpg" alt="" width="820" height="427" /></a>
+
 A video demo at <a href="https://github.com/archidisign/SensAi/blob/master/sensAI_test.mp4">here</a>
