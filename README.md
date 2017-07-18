@@ -3,8 +3,6 @@
 This is the code for a Facebook messenger bot that allows the user to find the URL to an ASL video representation based on an input word. The messenger bot uses Wit.AI and NLP to guess with confidence % what the word in a user question is and finds the word's link in the database. Project was done as part of the AI for Social Good Hackathon hosted by McGill University.
 
 Work is done using: Node.js, Python, CSV, Wit.AI, Messenger Facebook Developer Tools, Webhook and ngrok.
-Work is done as part of McGill University's AI for Social Good Hackathon.
-
 
 <h3>1) Creating Our Own Dataset</h3>
 As there weren't any clean existing dataset of ASL translated videos of common English word, we decided to use Handspeak. The handspeak website has a fair amount of videos for common words (7553 videos, one for each word). We thought it would be a great start to find links to these videos and being able to map them to the word associated. We used Python to scrape the website and create a dataset. Although the links for the video location couldn't be easily shared because of permission issues, the dataset still allowed us to map the numbers to the correct word and its webpage. The Python program we wrote for this is called <a href="https://github.com/archidisign/SensAi/blob/master/DBExtract.py">DBExtract.py</a>. The program scrapes the website's structure and saves all important information in a csv file.
